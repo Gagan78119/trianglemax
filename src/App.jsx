@@ -19,7 +19,7 @@ import {
   Menu,
   Clapperboard
 } from 'lucide-react';
-import logo from "./assets/trianglemax_logo.jpeg"
+import logo from "./assets/trianglemax_logo-removebg-preview.png"
 import './App.css';
 
 const InstagramIcon = ({ size = 24, color = "currentColor" }) => (
@@ -66,7 +66,7 @@ function App() {
         <div className="header-container">
           <a href="#" className="logo-link">
             <div className="logo-icon-wrap">
-              <img src={logo} alt="" width={48} height={48}/>
+              <img src={logo} alt="" width={42} height={42}/>
             </div>
             <div className="logo-text">
               TRIANGLE<span>MAX</span>
