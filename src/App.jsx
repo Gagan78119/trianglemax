@@ -17,7 +17,9 @@ import {
   Send,
   X,
   Menu,
-  Clapperboard
+  Clapperboard,
+  MapPin,
+  User
 } from 'lucide-react';
 import logo from "./assets/trianglemax_logo-removebg-preview.png"
 import './App.css';
@@ -40,7 +42,7 @@ function App() {
   const [inquiryDuration, setInquiryDuration] = useState('45s (₹749)');
   const [inquiryNote, setInquiryNote] = useState('');
 
-  const WHATSAPP_NUMBER = '919381844917';
+  const WHATSAPP_NUMBER = '917989736006';
   const INSTAGRAM_URL = 'https://www.instagram.com/trianglemax?igsh=MWQ5b21zZHFreGh0ZQ==';
 
   const getWhatsAppLink = (customText) => {
@@ -556,10 +558,10 @@ function App() {
           <div className="about-founder-box">
             <div className="founder-avatar-wrap">
               <div className="founder-avatar-inner">
-                ANU
+                S
               </div>
             </div>
-            <h3 className="founder-name">ANU</h3>
+            <h3 className="founder-name">SURENDRA CHOWDARY RAVIPATI</h3>
             <span className="founder-title">CEO & Founder</span>
           </div>
 
@@ -617,7 +619,7 @@ function App() {
               </div>
               <div className="contact-info-text">
                 <label>WhatsApp Us (Say HI)</label>
-                <p>9381844917</p>
+                <p>7989736006</p>
               </div>
             </a>
 
@@ -730,46 +732,105 @@ function App() {
       {/* 8. MINIMAL FOOTER */}
       <footer className="footer">
         <div className="footer-container">
-          <div className="footer-logo">
-            <Film size={24} color="#FF4FA3" />
-            <span>TRIANGLE<span style={{ color: '#FF4FA3' }}>MAX</span></span>
+          <div className="footer-main">
+            {/* Brand & About Column */}
+            <div className="footer-brand-col">
+              <div className="footer-logo">
+                <Film size={26} color="#FF4FA3" />
+                <span>TRIANGLE<span className="logo-accent">MAX</span></span>
+              </div>
+              <p className="footer-tagline">
+                Turning Ideas Into Cinematic AI Experiences. High-converting video ads engineered for modern brands.
+              </p>
+              <div className="footer-socials">
+                <a
+                  href={getWhatsAppLink("Hi ANU!")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-icon-btn"
+                  title="WhatsApp"
+                  aria-label="WhatsApp"
+                >
+                  <MessageCircle size={20} />
+                </a>
+                <a
+                  href={INSTAGRAM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-icon-btn"
+                  title="Instagram"
+                  aria-label="Instagram"
+                >
+                  <InstagramIcon size={20} />
+                </a>
+                <a
+                  href="mailto:trianglemaxx@gmail.com"
+                  className="social-icon-btn"
+                  title="Email"
+                  aria-label="Email"
+                >
+                  <Mail size={20} />
+                </a>
+              </div>
+            </div>
+
+            {/* Quick Links Column */}
+            <div className="footer-nav-col">
+              <h4 className="footer-col-title">Quick Links</h4>
+              <ul className="footer-links">
+                <li><a href="#pricing">Pricing Plans</a></li>
+                <li><a href="#services">Our Services</a></li>
+                <li><a href="#why-us">Why Choose Us</a></li>
+                <li><a href="#about">About CEO</a></li>
+                <li><a href="#contact">Get In Touch</a></li>
+              </ul>
+            </div>
+
+            {/* Contact Details Column */}
+            <div className="footer-contact-col">
+              <h4 className="footer-col-title">Contact Details</h4>
+              <div className="footer-contact-cards">
+                <div className="footer-contact-card">
+                  <div className="contact-icon-pill">
+                    <User size={16} />
+                  </div>
+                  <div className="contact-meta">
+                    <span className="contact-meta-label">Founder</span>
+                    <span className="contact-meta-val">SURENDRA CHOWDARY RAVIPATI</span>
+                  </div>
+                </div>
+
+                <div className="footer-contact-card">
+                  <div className="contact-icon-pill">
+                    <MapPin size={16} />
+                  </div>
+                  <div className="contact-meta">
+                    <span className="contact-meta-label">Location</span>
+                    <span className="contact-meta-val">ONGOLE</span>
+                  </div>
+                </div>
+
+                <a href="tel:7989736006" className="footer-contact-card is-link">
+                  <div className="contact-icon-pill">
+                    <Phone size={16} />
+                  </div>
+                  <div className="contact-meta">
+                    <span className="contact-meta-label">Contact / Phone</span>
+                    <span className="contact-meta-val">7989736006</span>
+                  </div>
+                </a>
+              </div>
+            </div>
           </div>
 
-          <p className="footer-tagline">
-            Turning Ideas Into Cinematic AI Experiences.
-          </p>
-
-          <div className="footer-socials">
-            <a
-              href={getWhatsAppLink("Hi ANU!")}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="social-icon-btn"
-              title="WhatsApp"
-            >
-              <MessageCircle size={20} />
-            </a>
-            <a
-              href={INSTAGRAM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="social-icon-btn"
-              title="Instagram"
-            >
-              <InstagramIcon size={20} />
-            </a>
-            <a
-              href="mailto:trianglemaxx@gmail.com"
-              className="social-icon-btn"
-              title="Email"
-            >
-              <Mail size={20} />
-            </a>
+          <div className="footer-bottom">
+            <p className="copyright">
+              © 2026 TRIANGLEMAX. All Rights Reserved.
+            </p>
+            <p className="footer-subtext">
+              Cinematic AI Commercials & Ad Production
+            </p>
           </div>
-
-          <p className="copyright">
-            © 2026 TRIANGLEMAX. All Rights Reserved.
-          </p>
         </div>
       </footer>
 
