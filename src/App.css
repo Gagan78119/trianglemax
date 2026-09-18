@@ -1499,3 +1499,62 @@
   padding: 24px;
   gap: 14px;
 }
+
+/* PRICING CARD CHECKOUT ACTIONS */
+.pricing-card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.btn-card-checkout {
+  width: 100%;
+  background: var(--gradient-primary);
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 15px;
+  padding: 14px 20px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 8px 22px rgba(255, 79, 163, 0.35);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+}
+
+.btn-card-checkout:hover {
+  background: linear-gradient(135deg, #E03388 0%, #FF4FA3 100%);
+  box-shadow: 0 12px 28px rgba(255, 79, 163, 0.45);
+  transform: translateY(-2px);
+}
+
+.btn-card-whatsapp-secondary {
+  width: 100%;
+  background: #FFF0F7;
+  color: var(--primary-dark);
+  border: 1.5px solid var(--border-pink);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 13px;
+  padding: 10px 16px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-card-whatsapp-secondary:hover {
+  background: #FFE4F2;
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-1px);
+}

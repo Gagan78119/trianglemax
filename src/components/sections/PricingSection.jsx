@@ -1,8 +1,17 @@
+﻿import { useState } from 'react';
 import SectionHeading from '../ui/SectionHeading';
 import PricingCard from '../cards/PricingCard';
+import Modal from '../ui/Modal';
+import CheckoutForm from '../forms/CheckoutForm';
 import { PRICING_PACKAGES, TRUST_ITEMS } from '../../data/pricing';
 
 export const PricingSection = () => {
+  const [selectedPlan, setSelectedPlan] = useState(null);
+
+  const handleCloseCheckout = () => {
+    setSelectedPlan(null);
+  };
+
   return (
     <section id="pricing" className="section pricing-section">
       <SectionHeading
@@ -13,7 +22,11 @@ export const PricingSection = () => {
 
       <div className="pricing-grid">
         {PRICING_PACKAGES.map((pkg) => (
-          <PricingCard key={pkg.id} {...pkg} />
+          <PricingCard
+            key={pkg.id}
+            {...pkg}
+            onSelectPlan={(plan) => setSelectedPlan(plan)}
+          />
         ))}
       </div>
 
@@ -29,6 +42,20 @@ export const PricingSection = () => {
           );
         })}
       </div>
+
+      {/* Centralized Checkout Modal */}
+      <Modal
+        isOpen={Boolean(selectedPlan)}
+        onClose={handleCloseCheckout}
+        title="Complete Your Booking"
+      >
+        {selectedPlan && (
+          <CheckoutForm
+            plan={selectedPlan}
+            onCancel={handleCloseCheckout}
+          />
+        )}
+      </Modal>
     </section>
   );
 };
