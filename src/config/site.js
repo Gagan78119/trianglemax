@@ -1,0 +1,21 @@
+export const SITE_CONFIG = {
+  companyName: 'TRIANGLEMAX',
+  tagline: 'Turning Ideas Into Cinematic AI Experiences. High-converting video ads engineered for modern brands.',
+  shortTagline: 'Turning Ideas Into Cinematic AI Experiences. We craft premium, high-converting AI commercial video ads that help businesses stand out and drive massive growth.',
+  studioTag: 'AI CINEMATIC ADVERTISING STUDIO',
+  whatsappNumber: '917989736006',
+  displayPhone: '7989736006',
+  email: 'trianglemaxx@gmail.com',
+  instagramUrl: 'https://www.instagram.com/trianglemax?igsh=MWQ5b21zZHFreGh0ZQ==',
+  instagramHandle: '@trianglemax',
+  location: 'ONGOLE',
+  founder: {
+    name: 'SURENDRA CHOWDARY RAVIPATI',
+    initial: 'S',
+    title: 'CEO & Founder',
+    quote: '"Creative AI Ads That Make Your Brand Unstoppable."',
+  },
+  copyright: '© 2026 TRIANGLEMAX. All Rights Reserved.',
+  footerSubtext: 'Cinematic AI Commercials & Ad Production',
+  startingPrice: '₹99/-',
+};
