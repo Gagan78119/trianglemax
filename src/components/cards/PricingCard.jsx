@@ -1,4 +1,4 @@
-﻿import { CheckCircle2, MessageCircle, ArrowRight, Zap } from 'lucide-react';
+import { CheckCircle2, MessageCircle, ArrowRight, Zap, ShieldCheck, Sparkles, Lock } from 'lucide-react';
 import { getWhatsAppLink } from '../../utils/whatsapp';
 
 export const PricingCard = ({
@@ -7,13 +7,15 @@ export const PricingCard = ({
   title,
   subtitle,
   price,
+  originalPrice,
+  discountBadge,
   amountInPaise,
   isPayableOnline = true,
   features,
-  popular = false,
-  ribbonText = 'MOST POPULAR',
+  popular = true,
+  ribbonText = 'LIMITED TIME LAUNCH DEAL',
   whatsappMessage,
-  ctaLabel = 'BOOK & PAY NOW',
+  ctaLabel = 'BOOK & PAY NOW (₹99)',
   onSelectPlan,
 }) => {
   const planData = {
@@ -27,18 +29,42 @@ export const PricingCard = ({
   };
 
   return (
-    <div className={`pricing-card ${popular ? 'popular' : ''}`}>
-      {popular && <div className="popular-ribbon">{ribbonText}</div>}
-      <div className="card-header">
-        <div className="duration-badge">{durationBadge}</div>
+    <div className={`pricing-card single-flagship-card ${popular ? 'popular' : ''}`}>
+      {popular && (
+        <div className="popular-ribbon">
+          <Sparkles size={13} style={{ marginRight: 5 }} />
+          {ribbonText}
+        </div>
+      )}
+
+      <div className="card-header single-card-header">
+        <div className="single-card-top-meta">
+          <div className="duration-badge">{durationBadge}</div>
+          {discountBadge && <div className="discount-tag-pill">{discountBadge}</div>}
+        </div>
+
         <h3 className="card-title">{title}</h3>
         <div className="card-subtitle">{subtitle}</div>
-        <div className="card-price">
-          {price}<span>/-</span>
+
+        <div className="card-price-wrap">
+          {originalPrice && <span className="card-original-price">{originalPrice}</span>}
+          <div className="card-price">
+            {price}
+            <span className="card-price-suffix">/ complete ad</span>
+          </div>
+        </div>
+
+        <div className="card-delivery-banner">
+          <Zap size={15} color="#FF4FA3" />
+          <span>Express 24-48h Delivery • 100% Commercial Rights</span>
         </div>
       </div>
 
-      <ul className="features-list">
+      <div className="single-features-header">
+        <span>WHAT'S INCLUDED IN YOUR PACKAGE:</span>
+      </div>
+
+      <ul className="features-list single-features-grid">
         {features.map((feature, idx) => (
           <li key={idx} className="feature-item">
             <div className="feature-icon">
@@ -53,13 +79,13 @@ export const PricingCard = ({
         <div className="pricing-card-actions">
           <button
             type="button"
-            className="btn-card-checkout"
+            className="btn-card-checkout single-card-btn"
             onClick={() => onSelectPlan && onSelectPlan(planData)}
             aria-label={`Pay ${price} for ${title}`}
           >
-            <Zap size={18} />
+            <Zap size={20} />
             <span>{ctaLabel}</span>
-            <ArrowRight size={16} />
+            <ArrowRight size={18} />
           </button>
 
           <a
@@ -67,11 +93,22 @@ export const PricingCard = ({
             target="_blank"
             rel="noopener noreferrer"
             className="btn-card-whatsapp-secondary"
-            title="Chat with us on WhatsApp"
+            title="Chat with ANU on WhatsApp"
           >
-            <MessageCircle size={15} />
-            <span>Inquire on WhatsApp</span>
+            <MessageCircle size={16} />
+            <span>Have questions? Chat on WhatsApp First</span>
           </a>
+
+          <div className="pricing-security-strip">
+            <div className="sec-pill">
+              <Lock size={12} />
+              <span>Instant Confirmation</span>
+            </div>
+            <div className="sec-pill">
+              <ShieldCheck size={13} />
+              <span>PhonePe 256-bit Encrypted</span>
+            </div>
+          </div>
         </div>
       ) : (
         <a

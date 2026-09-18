@@ -1,10 +1,16 @@
-﻿import { createPaymentOrder } from './_phonepeHelper.js';
+import { createPaymentOrder } from './_phonepeHelper.js';
 
 // Canonical package catalog for server-side validation & anti-tampering
 const CANONICAL_PACKAGES = {
   '30s': {
     id: '30s',
-    title: '30 Seconds AI Cinematic Ad',
+    title: 'AI Cinematic Ad Package (Launch Offer)',
+    amountInPaise: 9900,
+    isPayableOnline: true,
+  },
+  'cinematic-99': {
+    id: 'cinematic-99',
+    title: 'AI Cinematic Ad Package (Launch Offer)',
     amountInPaise: 9900,
     isPayableOnline: true,
   },

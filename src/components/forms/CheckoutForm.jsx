@@ -1,8 +1,8 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { Lock, ShieldCheck, ArrowRight, Loader2, Sparkles, AlertCircle } from 'lucide-react';
 import './CheckoutForm.css';
 
-export const CheckoutForm = ({ plan, onCancel }) => {
+export const CheckoutForm = ({ plan }) => {
   const [formData, setFormData] = useState({
     fullName: '',
     phone: '',
@@ -159,22 +159,6 @@ export const CheckoutForm = ({ plan, onCancel }) => {
               className="checkout-input"
             />
           </div>
-        </div>
-
-        <div className="checkout-input-group">
-          <label htmlFor="checkout-company" className="checkout-label">
-            Company / Brand Name <span className="optional">(Optional)</span>
-          </label>
-          <input
-            id="checkout-company"
-            type="text"
-            name="companyName"
-            placeholder="e.g. Spark Cosmetics"
-            value={formData.companyName}
-            onChange={handleChange}
-            disabled={isLoading}
-            className="checkout-input"
-          />
         </div>
 
         <button

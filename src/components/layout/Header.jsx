@@ -28,15 +28,7 @@ export const Header = () => {
         </nav>
 
         <div className="header-cta">
-          <a
-            href={getWhatsAppLink("Hi ANU! SAY HI from TRIANGLEMAX website.")}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-whatsapp-sm"
-          >
-            <MessageCircle size={18} />
-            SAY HI
-          </a>
+
           <button
             className="mobile-menu-btn"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

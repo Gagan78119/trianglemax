@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import SectionHeading from '../ui/SectionHeading';
 import PricingCard from '../cards/PricingCard';
 import Modal from '../ui/Modal';
@@ -15,12 +15,13 @@ export const PricingSection = () => {
   return (
     <section id="pricing" className="section pricing-section">
       <SectionHeading
-        badge="TRANSPARENT PRICING"
-        title="Affordable AI Cinematic Packages"
-        subtitle="Get ultra-high-quality cinematic video advertisements crafted to boost your brand conversions without breaking the bank."
+        badge="TRANSPARENT & SIMPLE"
+        title="One Irresistible Price: ₹99"
+        subtitle="Full cinematic AI commercial ad crafted for your brand. No hidden fees, no complicated tiers — just movie-grade quality delivered fast."
       />
 
-      <div className="pricing-grid">
+      {/* Centered Single Pricing Presentation for Desktop & Mobile */}
+      <div className="pricing-single-wrapper">
         {PRICING_PACKAGES.map((pkg) => (
           <PricingCard
             key={pkg.id}
@@ -47,7 +48,7 @@ export const PricingSection = () => {
       <Modal
         isOpen={Boolean(selectedPlan)}
         onClose={handleCloseCheckout}
-        title="Complete Your Booking"
+        title="Complete Your Booking & Payment"
       >
         {selectedPlan && (
           <CheckoutForm

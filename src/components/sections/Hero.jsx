@@ -1,8 +1,40 @@
-import { Sparkles, Zap, MessageCircle, Play, Star } from 'lucide-react';
+import { useState, useRef } from 'react';
+import { Sparkles, Zap, MessageCircle, Play, Pause, Volume2, VolumeX, Star, ArrowRight, Maximize2 } from 'lucide-react';
 import { SITE_CONFIG } from '../../config/site';
 import { getWhatsAppLink } from '../../utils/whatsapp';
 
 export const Hero = ({ onOpenModal }) => {
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef(null);
+
+  const togglePlay = () => {
+    if (!videoRef.current) return;
+    if (isPlaying) {
+      videoRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      videoRef.current.play();
+      setIsPlaying(true);
+    }
+  };
+
+  const toggleMute = () => {
+    if (!videoRef.current) return;
+    const nextMuted = !isMuted;
+    videoRef.current.muted = nextMuted;
+    setIsMuted(nextMuted);
+  };
+
+  const handleOpenShowcase = () => {
+    onOpenModal?.({
+      title: 'TRIANGLEMAX AI Cinematic Ad Demo',
+      type: 'Hero Showcase',
+      videoUrl: '/aivideosdemo/CinematicAds7.mp4',
+      desc: 'Watch our flagship ultra-high-definition AI commercial in full cinematic quality.',
+    });
+  };
+
   return (
     <section className="hero-section">
       <div className="hero-content">
@@ -27,9 +59,10 @@ export const Hero = ({ onOpenModal }) => {
         </div>
 
         <div className="hero-actions">
-          <a href="#pricing" className="btn-primary">
+          <a href="#pricing" className="btn-primary btn-book-pay-hero">
             <Zap size={18} />
-            Explore Pricing
+            <span>BOOK & PAY NOW</span>
+            <ArrowRight size={16} />
           </a>
           <a
             href={getWhatsAppLink("Hi ANU, I'm interested in ordering a cinematic AI advertisement!")}
@@ -45,26 +78,79 @@ export const Hero = ({ onOpenModal }) => {
 
       <div className="hero-visual-container">
         <div className="hero-visual-card">
-          <div className="hero-preview-screen">
-            <div className="hero-preview-glow"></div>
-            <div
-              className="hero-play-trigger"
-              onClick={() =>
-                onOpenModal?.({
-                  title: 'TRIANGLEMAX AI Commercial Demo',
-                  type: 'Hero Showcase',
-                })
-              }
-            >
-              <Play size={32} fill="#FFFFFF" style={{ marginLeft: 4 }} />
-            </div>
-            <p className="hero-preview-caption">Click to Watch Showcase</p>
-          </div>
+          <div className="hero-video-player-frame">
+            {/* Ambient Background Glow */}
+            <div className="hero-video-ambient-glow" />
 
-          <div className="duration-pills">
-            <span className="dur-pill">30 SECONDS</span>
-            <span className="dur-pill active">45 SECONDS</span>
-            <span className="dur-pill">60 SECONDS</span>
+            {/* Video Element */}
+            <video
+              ref={videoRef}
+              src="/aivideosdemo/CinematicAds7.mp4"
+              className="hero-video-element"
+              autoPlay
+              muted={isMuted}
+              loop
+              playsInline
+              onClick={togglePlay}
+            />
+
+            {/* Top Glass Info Pill */}
+            <div className="hero-video-top-bar">
+              <div className="live-status-badge">
+                <span className="live-dot"></span>
+                <span>AI CINEMATIC REEL</span>
+              </div>
+              <div className="resolution-badge">4K UHD</div>
+            </div>
+
+            {/* Center Play Overlay when Paused */}
+            {!isPlaying && (
+              <div className="hero-video-center-overlay" onClick={togglePlay}>
+                <div className="hero-play-icon-wrap">
+                  <Play size={32} fill="#FFFFFF" style={{ marginLeft: 3 }} />
+                </div>
+                <span className="hero-overlay-text">Paused • Tap to Play</span>
+              </div>
+            )}
+
+            {/* Bottom Controls Bar */}
+            <div className="hero-video-controls-bar">
+              <div className="controls-left">
+                <button
+                  type="button"
+                  className="hero-control-btn"
+                  onClick={togglePlay}
+                  title={isPlaying ? 'Pause' : 'Play'}
+                  aria-label={isPlaying ? 'Pause' : 'Play'}
+                >
+                  {isPlaying ? <Pause size={16} /> : <Play size={16} fill="currentColor" />}
+                </button>
+
+                <button
+                  type="button"
+                  className={`hero-control-btn ${!isMuted ? 'active-audio' : ''}`}
+                  onClick={toggleMute}
+                  title={isMuted ? 'Unmute Sound' : 'Mute Sound'}
+                  aria-label={isMuted ? 'Unmute' : 'Mute'}
+                >
+                  {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+                  <span className="control-btn-label">{isMuted ? 'Tap for Sound' : 'Audio On'}</span>
+                </button>
+              </div>
+
+              <div className="controls-right">
+                <button
+                  type="button"
+                  className="hero-control-btn expand-btn"
+                  onClick={handleOpenShowcase}
+                  title="Expand Fullscreen Showcase"
+                  aria-label="Expand Showcase"
+                >
+                  <Maximize2 size={15} />
+                  <span className="control-btn-label">Full Showcase</span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 

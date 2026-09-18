@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import {
   CheckCircle2,
   XCircle,
@@ -15,23 +15,16 @@ import { getWhatsAppLink } from '../../utils/whatsapp';
 import './PaymentStatus.css';
 
 export const PaymentStatus = ({ orderId: propOrderId, onBackToHome }) => {
-  const [loading, setLoading] = useState(true);
-  const [statusData, setStatusData] = useState(null);
-  const [error, setError] = useState('');
-
   // Extract orderId from prop or URL
-  const getOrderId = () => {
-    if (propOrderId) return propOrderId;
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-      return params.get('orderId') || params.get('merchantOrderId') || '';
-    }
-    return '';
-  };
+  const orderId = propOrderId || (typeof window !== 'undefined'
+    ? new URLSearchParams(window.location.search).get('orderId') || new URLSearchParams(window.location.search).get('merchantOrderId') || ''
+    : '');
 
-  const orderId = getOrderId();
+  const [loading, setLoading] = useState(() => Boolean(orderId));
+  const [statusData, setStatusData] = useState(null);
+  const [error, setError] = useState(() => (!orderId ? 'No Order ID found in the payment return URL.' : ''));
 
-  const fetchStatus = async () => {
+  const fetchStatus = useCallback(async () => {
     if (!orderId) {
       setError('No Order ID found in the payment return URL.');
       setLoading(false);
@@ -56,10 +49,41 @@ export const PaymentStatus = ({ orderId: propOrderId, onBackToHome }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [orderId]);
 
   useEffect(() => {
-    fetchStatus();
+    if (!orderId) return;
+
+    let ignore = false;
+    const runFetch = async () => {
+      try {
+        const res = await fetch(`/api/payment/status?orderId=${encodeURIComponent(orderId)}`);
+        const data = await res.json().catch(() => null);
+
+        if (ignore) return;
+
+        if (!res.ok || !data?.success) {
+          throw new Error(data?.message || 'Unable to retrieve payment status from PhonePe.');
+        }
+
+        setStatusData(data);
+      } catch (err) {
+        if (!ignore) {
+          console.error('Payment status fetch failed:', err);
+          setError(err.message || 'Error checking payment status. Please try refreshing.');
+        }
+      } finally {
+        if (!ignore) {
+          setLoading(false);
+        }
+      }
+    };
+
+    runFetch();
+
+    return () => {
+      ignore = true;
+    };
   }, [orderId]);
 
   const isCompleted = statusData?.isCompleted;
