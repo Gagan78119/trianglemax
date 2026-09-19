@@ -44,8 +44,8 @@ export const Home = () => {
       <Header />
       <main>
         <Hero onOpenModal={setActiveModal} />
-        <PricingSection />
         <ServicesSection onOpenModal={setActiveModal} />
+        <PricingSection />
         <AboutSection />
         <ContactSection />
       </main>

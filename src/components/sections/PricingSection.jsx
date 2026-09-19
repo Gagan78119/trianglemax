@@ -31,19 +31,6 @@ export const PricingSection = () => {
         ))}
       </div>
 
-      {/* Trust Badges Ribbon */}
-      <div className="trust-ribbon-bar">
-        {TRUST_ITEMS.map((item, idx) => {
-          const Icon = item.icon;
-          return (
-            <div key={idx} className="trust-item">
-              <Icon size={20} />
-              <span>{item.label}</span>
-            </div>
-          );
-        })}
-      </div>
-
       {/* Centralized Checkout Modal */}
       <Modal
         isOpen={Boolean(selectedPlan)}
