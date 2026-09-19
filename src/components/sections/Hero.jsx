@@ -1,7 +1,19 @@
-import { useState, useRef } from 'react';
-import { Sparkles, Zap, MessageCircle, Play, Pause, Volume2, VolumeX, Star, ArrowRight, Maximize2 } from 'lucide-react';
-import { SITE_CONFIG } from '../../config/site';
+import React, { useState, useRef } from 'react';
+import { 
+  Sparkles, 
+  Zap, 
+  MessageCircle, 
+  Play, 
+  Pause, 
+  Volume2, 
+  VolumeX, 
+  CheckCircle2, 
+  Clock, 
+  ArrowDown, 
+  Maximize2 
+} from 'lucide-react';
 import { getWhatsAppLink } from '../../utils/whatsapp';
+import './Hero.css';
 
 export const Hero = ({ onOpenModal }) => {
   const [isPlaying, setIsPlaying] = useState(true);
@@ -28,140 +40,167 @@ export const Hero = ({ onOpenModal }) => {
 
   const handleOpenShowcase = () => {
     onOpenModal?.({
-      title: 'TRIANGLEMAX AI Cinematic Ad Demo',
-      type: 'Hero Showcase',
+      title: 'AI Commercial Showcase Demo',
+      desc: 'Watch our flagship AI commercial in full high-definition quality.',
       videoUrl: '/aivideosdemo/CinematicAds7.mp4',
-      desc: 'Watch our flagship ultra-high-definition AI commercial in full cinematic quality.',
     });
   };
 
+  const whatsappMessage = "Hi ANU! I saw your ₹99 AI Video launch offer and I want to order for my business.";
+
   return (
-    <section className="hero-section">
-      <div className="hero-content">
-        <div className="hero-tag">
-          <Sparkles size={16} />
-          {SITE_CONFIG.studioTag}
-        </div>
+    <section className="tm-hero-section">
+      {/* Ambient background glow */}
+      <div className="tm-hero-glow" />
 
-        <h1 className="hero-title">
-          CINEMATIC AI ADS
-          <span className="hero-title-highlight">THAT GROW YOUR BUSINESS</span>
-        </h1>
-
-        <p className="hero-description">{SITE_CONFIG.shortTagline}</p>
-
-        <div className="hero-price-anchor">
-          <div>
-            <div className="price-label">STARTING AT JUST</div>
-            <div className="price-amount">{SITE_CONFIG.startingPrice}</div>
+      <div className="tm-hero-container">
+        {/* Left Column: Offer Content */}
+        <div className="tm-hero-left">
+          {/* Top Launch Pill */}
+          <div className="tm-hero-launch-badge">
+            <span className="tm-hero-badge-icon">🎬</span>
+            <span className="tm-hero-badge-text">AI VIDEO – JUST ₹99/-</span>
+            <span className="tm-hero-badge-sub">(First time in the world!)</span>
           </div>
-          <Sparkles size={24} color="#FF4FA3" />
-        </div>
 
-        <div className="hero-actions">
-          <a href="#pricing" className="btn-primary btn-book-pay-hero">
-            <Zap size={18} />
-            <span>BOOK & PAY NOW</span>
-            <ArrowRight size={16} />
-          </a>
-          <a
-            href={getWhatsAppLink("Hi ANU, I'm interested in ordering a cinematic AI advertisement!")}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-secondary"
-          >
-            <MessageCircle size={18} color="#25D366" />
-            Chat on WhatsApp
-          </a>
-        </div>
-      </div>
+          {/* Greeting */}
+          <div className="tm-hero-greeting">
+            Hello <span className="tm-wave-hand">👋</span>
+          </div>
 
-      <div className="hero-visual-container">
-        <div className="hero-visual-card">
-          <div className="hero-video-player-frame">
-            {/* Ambient Background Glow */}
-            <div className="hero-video-ambient-glow" />
+          {/* Subtitle statement */}
+          <p className="tm-hero-lead">
+            We are a startup company launching AI video creation at only <strong className="tm-price-highlight">₹99/-</strong> per video.
+          </p>
 
-            {/* Video Element */}
-            <video
-              ref={videoRef}
-              src="/aivideosdemo/CinematicAds7.mp4"
-              className="hero-video-element"
-              autoPlay
-              muted={isMuted}
-              loop
-              playsInline
-              onClick={togglePlay}
-            />
+          {/* Narrative & Reasoning Box */}
+          <div className="tm-hero-story-box">
+            <p className="tm-story-text">
+              Bayata okka AI video ki <span className="tm-strike">₹499</span>, <span className="tm-strike">₹999</span>, <span className="tm-strike">₹2000</span>, <span className="tm-strike">₹3000</span> varaku charge chesthunnaru. 
+              Memu okka AI video ni <strong className="tm-accent-bold">₹99/-</strong> ki istunnam.
+            </p>
+            <p className="tm-story-reason">
+              99/- ki maku profit undadhu, kani memu <strong>BUSINESS client collection</strong> build chesthunnam. Andhuke ee special price.
+            </p>
+          </div>
 
-            {/* Top Glass Info Pill */}
-            <div className="hero-video-top-bar">
-              <div className="live-status-badge">
-                <span className="live-dot"></span>
-                <span>AI CINEMATIC REEL</span>
-              </div>
-              <div className="resolution-badge">4K UHD</div>
+          {/* Guarantee Checklist */}
+          <div className="tm-hero-guarantees">
+            <div className="tm-guarantee-item">
+              <CheckCircle2 size={18} className="tm-check-icon" />
+              <span>Demo videos check cheyandi</span>
             </div>
+            <div className="tm-guarantee-item">
+              <CheckCircle2 size={18} className="tm-check-icon" />
+              <span>Neeku nachithe matrame payment cheyandi</span>
+            </div>
+          </div>
 
-            {/* Center Play Overlay when Paused */}
-            {!isPlaying && (
-              <div className="hero-video-center-overlay" onClick={togglePlay}>
-                <div className="hero-play-icon-wrap">
-                  <Play size={32} fill="#FFFFFF" style={{ marginLeft: 3 }} />
+          {/* Urgency Pill */}
+          <div className="tm-hero-urgency-banner">
+            <Clock size={16} className="tm-clock-icon" />
+            <span>This offer ends in <strong>24 hours</strong> only!</span>
+          </div>
+
+          {/* Call to Actions */}
+          <div className="tm-hero-cta-group">
+            <a
+              href={getWhatsAppLink(whatsappMessage)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="tm-btn-whatsapp-hero"
+            >
+              <MessageCircle size={20} />
+              <span>Order cheyadaniki ipude message cheyandi 📲</span>
+            </a>
+
+            <a href="#services" className="tm-btn-demo-scroll">
+              <ArrowDown size={16} />
+              <span>Check Demo Videos Below</span>
+            </a>
+          </div>
+
+          {/* Gratitude Sign-off */}
+          <div className="tm-hero-signoff">
+            Thank you <span className="tm-namaste">🙏</span>
+          </div>
+        </div>
+
+        {/* Right Column: Video Demo Visual */}
+        <div className="tm-hero-right">
+          <div className="tm-hero-video-frame">
+            <div className="tm-video-wrapper">
+              <video
+                ref={videoRef}
+                src="/aivideosdemo/CinematicAds7.mp4"
+                className="tm-hero-video"
+                autoPlay
+                muted={isMuted}
+                loop
+                playsInline
+                onClick={togglePlay}
+              />
+
+              {/* Top Video Header Tag */}
+              <div className="tm-video-header-bar">
+                <div className="tm-live-indicator">
+                  <span className="tm-live-dot" />
+                  <span>SAMPLE DEMO VIDEO</span>
                 </div>
-                <span className="hero-overlay-text">Paused • Tap to Play</span>
-              </div>
-            )}
-
-            {/* Bottom Controls Bar */}
-            <div className="hero-video-controls-bar">
-              <div className="controls-left">
-                <button
-                  type="button"
-                  className="hero-control-btn"
-                  onClick={togglePlay}
-                  title={isPlaying ? 'Pause' : 'Play'}
-                  aria-label={isPlaying ? 'Pause' : 'Play'}
-                >
-                  {isPlaying ? <Pause size={16} /> : <Play size={16} fill="currentColor" />}
-                </button>
-
-                <button
-                  type="button"
-                  className={`hero-control-btn ${!isMuted ? 'active-audio' : ''}`}
-                  onClick={toggleMute}
-                  title={isMuted ? 'Unmute Sound' : 'Mute Sound'}
-                  aria-label={isMuted ? 'Unmute' : 'Mute'}
-                >
-                  {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
-                  <span className="control-btn-label">{isMuted ? 'Tap for Sound' : 'Audio On'}</span>
-                </button>
+                <div className="tm-video-quality-tag">4K ULTRA HD</div>
               </div>
 
-              <div className="controls-right">
+              {/* Center Play Overlay when paused */}
+              {!isPlaying && (
+                <div className="tm-video-paused-overlay" onClick={togglePlay}>
+                  <div className="tm-play-btn-circle">
+                    <Play size={28} fill="#FFFFFF" style={{ marginLeft: 3 }} />
+                  </div>
+                  <span>Tap to Resume</span>
+                </div>
+              )}
+
+              {/* Bottom Video Controls */}
+              <div className="tm-video-footer-bar">
+                <div className="tm-controls-left">
+                  <button
+                    type="button"
+                    className="tm-ctrl-btn"
+                    onClick={togglePlay}
+                    aria-label={isPlaying ? 'Pause video' : 'Play video'}
+                  >
+                    {isPlaying ? <Pause size={15} /> : <Play size={15} fill="currentColor" />}
+                  </button>
+
+                  <button
+                    type="button"
+                    className={"tm-ctrl-btn" + (!isMuted ? " is-active" : "")}
+                    onClick={toggleMute}
+                    aria-label={isMuted ? 'Unmute video' : 'Mute video'}
+                  >
+                    {isMuted ? <VolumeX size={15} /> : <Volume2 size={15} />}
+                    <span className="tm-ctrl-text">{isMuted ? 'Sound Off' : 'Sound On'}</span>
+                  </button>
+                </div>
+
                 <button
                   type="button"
-                  className="hero-control-btn expand-btn"
+                  className="tm-ctrl-btn tm-ctrl-expand"
                   onClick={handleOpenShowcase}
-                  title="Expand Fullscreen Showcase"
-                  aria-label="Expand Showcase"
+                  aria-label="Open fullscreen demo"
                 >
-                  <Maximize2 size={15} />
-                  <span className="control-btn-label">Full Showcase</span>
+                  <Maximize2 size={14} />
+                  <span className="tm-ctrl-text">Full Demo</span>
                 </button>
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* Floating Feature Badges */}
-        <div className="floating-badge floating-badge-1">
-          <Zap size={18} color="#FF4FA3" />
-          <span>Fast 24-48h Delivery</span>
-        </div>
-        <div className="floating-badge floating-badge-2">
-          <Star size={18} color="#FF4FA3" />
-          <span>High-Quality Visuals</span>
+            {/* Bottom floating micro badges */}
+            <div className="tm-hero-floating-badge">
+              <Sparkles size={16} className="tm-badge-sparkle" />
+              <span>₹99 Launch Price – 100% Satisfaction Guarantee</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
