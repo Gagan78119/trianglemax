@@ -1,0 +1,284 @@
+/* ==========================================================================
+   TRIANGLEMAX - BOTTOM STICKY BAR / DOCK
+   Palette:
+     Primary: #FF4FA3
+     Primary Dark: #E03388
+     Secondary: #FF85C8
+     Accent / Soft: #FFD8EC / #FFF0F7
+     Background Dock: rgba(18, 16, 20, 0.94)
+   ========================================================================== */
+
+/* Add spacing at the bottom of the page so content isn't obscured */
+body {
+  padding-bottom: 76px;
+}
+
+.tm-sticky-bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: rgba(18, 16, 20, 0.94);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border-top: 1.5px solid rgba(255, 79, 163, 0.35);
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.6),
+              0 -2px 15px rgba(255, 79, 163, 0.18);
+  padding: 10px 0;
+  animation: tmStickySlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes tmStickySlideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.tm-sticky-bar-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* --------------------------------------------------------------------------
+   Left Side: Badge + Information (Desktop & Tablet)
+   -------------------------------------------------------------------------- */
+.tm-sticky-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.tm-sticky-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255, 79, 163, 0.15);
+  border: 1px solid rgba(255, 79, 163, 0.4);
+  padding: 5px 12px;
+  border-radius: 9999px;
+  flex-shrink: 0;
+}
+
+.tm-sticky-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #FF4FA3;
+  box-shadow: 0 0 8px #FF4FA3;
+  animation: tmPulseDot 1.6s infinite ease-in-out;
+}
+
+@keyframes tmPulseDot {
+  0%, 100% { opacity: 0.5; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+
+.tm-sticky-badge-text {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #FF85C8;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.tm-sticky-info-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.tm-sticky-title {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: 15px;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.01em;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tm-sticky-perks-text {
+  font-size: 12px;
+  color: #D6D0D6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tm-sticky-sep {
+  color: var(--primary, #FF4FA3);
+  font-weight: bold;
+}
+
+/* --------------------------------------------------------------------------
+   Right Side: Pricing & CTA Button
+   -------------------------------------------------------------------------- */
+.tm-sticky-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.tm-sticky-price-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  cursor: pointer;
+  user-select: none;
+}
+
+.tm-sticky-price-top {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tm-sticky-strike-price {
+  font-size: 11.5px;
+  color: #8E8A90;
+  text-decoration: line-through;
+  font-weight: 600;
+}
+
+.tm-sticky-discount-pill {
+  font-size: 9.5px;
+  font-weight: 800;
+  background: rgba(255, 79, 163, 0.25);
+  border: 1px solid rgba(255, 79, 163, 0.5);
+  color: #FF85C8;
+  padding: 1px 6px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+}
+
+.tm-sticky-current-price {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+
+.tm-sticky-currency {
+  font-size: 16px;
+  font-weight: 800;
+  color: #FF4FA3;
+}
+
+.tm-sticky-amount {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: 24px;
+  font-weight: 900;
+  color: #FFFFFF;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.tm-sticky-period {
+  font-size: 11px;
+  font-weight: 600;
+  color: #A8A2AA;
+  margin-left: 2px;
+}
+
+/* CTA Buy Now Button */
+.tm-sticky-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #FF4FA3 0%, #E03388 100%);
+  color: #FFFFFF;
+  border: none;
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: 15px;
+  font-weight: 800;
+  padding: 11px 22px;
+  border-radius: 9999px;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(255, 79, 163, 0.45);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.tm-sticky-cta-btn:hover {
+  background: linear-gradient(135deg, #FF70B5 0%, #FF4FA3 100%);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 24px rgba(255, 79, 163, 0.65);
+}
+
+.tm-sticky-cta-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.tm-sticky-btn-icon {
+  color: #FFFFFF;
+  fill: #FFFFFF;
+}
+
+.tm-sticky-cta-arrow {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.tm-sticky-cta-btn:hover .tm-sticky-cta-arrow {
+  transform: translateX(3px);
+}
+
+/* --------------------------------------------------------------------------
+   Mobile Responsive Adjustments
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 70px;
+  }
+
+  .tm-sticky-bottom-bar {
+    padding: 8px 0;
+  }
+
+  .tm-sticky-bar-container {
+    padding: 0 16px;
+  }
+
+  .tm-sticky-bar-left {
+    display: none; /* Hide long course text on mobile, prioritize price & CTA */
+  }
+
+  .tm-sticky-bar-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .tm-sticky-price-wrap {
+    align-items: flex-start;
+  }
+
+  .tm-sticky-amount {
+    font-size: 22px;
+  }
+
+  .tm-sticky-cta-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
