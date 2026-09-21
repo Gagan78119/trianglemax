@@ -1,11 +1,8 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import Header from '../components/layout/Header';
-import Footer from '../components/layout/Footer';
 import Hero from '../components/sections/Hero';
 import PricingSection from '../components/sections/PricingSection';
 import ServicesSection from '../components/sections/ServicesSection';
-import AboutSection from '../components/sections/AboutSection';
-import ContactSection from '../components/sections/ContactSection';
 import BottomStickyBar from '../components/layout/BottomStickyBar';
 import Modal from '../components/ui/Modal';
 import CheckoutForm from '../components/forms/CheckoutForm';
@@ -58,10 +55,7 @@ export const Home = () => {
         <Hero onOpenModal={setActiveModal} />
         <ServicesSection onOpenModal={setActiveModal} />
         <PricingSection />
-        <AboutSection />
-        <ContactSection />
       </main>
-      <Footer />
 
       {/* Persistent Bottom Sticky Bar for Desktop & Mobile */}
       <BottomStickyBar onBuyNow={() => handleOpenCheckout(PRICING_PACKAGES[0])} />
