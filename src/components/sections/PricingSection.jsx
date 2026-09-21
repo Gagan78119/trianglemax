@@ -5,7 +5,7 @@ import Modal from '../ui/Modal';
 import CheckoutForm from '../forms/CheckoutForm';
 import { PRICING_PACKAGES, TRUST_ITEMS } from '../../data/pricing';
 
-export const PricingSection = () => {
+export const PricingSection = ({ onOpenCheckout }) => {
   const [selectedPlan, setSelectedPlan] = useState(null);
 
   const handleCloseCheckout = () => {
@@ -26,7 +26,7 @@ export const PricingSection = () => {
           <PricingCard
             key={pkg.id}
             {...pkg}
-            onSelectPlan={(plan) => setSelectedPlan(plan)}
+            onSelectPlan={(plan) => onOpenCheckout ? onOpenCheckout(plan) : setSelectedPlan(plan)}
           />
         ))}
       </div>

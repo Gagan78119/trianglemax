@@ -54,11 +54,11 @@ export const Home = () => {
       <main>
         <Hero onOpenModal={setActiveModal} />
         <ServicesSection onOpenModal={setActiveModal} />
-        <PricingSection />
+        <PricingSection onOpenCheckout={handleOpenCheckout} />
       </main>
 
       {/* Persistent Bottom Sticky Bar for Desktop & Mobile */}
-      <BottomStickyBar onBuyNow={() => handleOpenCheckout(PRICING_PACKAGES[0])} />
+      <BottomStickyBar onBuyNow={() => handleOpenCheckout(PRICING_PACKAGES[0])} isHidden={Boolean(checkoutPlan || activeModal)} />
 
       {/* Centralized Checkout Modal */}
       <Modal

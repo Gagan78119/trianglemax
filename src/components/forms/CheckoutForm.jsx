@@ -89,7 +89,6 @@ export const CheckoutForm = ({ plan }) => {
         <div className="checkout-plan-row">
           <div>
             <h4 className="checkout-plan-title">{plan.title}</h4>
-            <p className="checkout-plan-sub">{plan.subtitle}</p>
           </div>
           <div className="checkout-plan-price">
             <span className="checkout-price-val">{plan.price}</span>
@@ -173,7 +172,7 @@ export const CheckoutForm = ({ plan }) => {
             </>
           ) : (
             <>
-              <span>Pay {plan.price} with PhonePe</span>
+              <span>Pay Now {plan.price}</span>
               <ArrowRight size={18} />
             </>
           )}

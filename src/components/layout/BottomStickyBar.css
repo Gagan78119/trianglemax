@@ -18,7 +18,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 9999;
+  z-index: 800;
   background: rgba(18, 16, 20, 0.94);
   backdrop-filter: blur(20px) saturate(160%);
   -webkit-backdrop-filter: blur(20px) saturate(160%);
@@ -281,4 +281,13 @@ body {
     padding: 10px 20px;
     font-size: 14px;
   }
+}
+
+
+/* When modal is open, smoothly slide bottom bar down and disable pointer events */
+.tm-sticky-bottom-bar.is-hidden {
+  transform: translateY(120%) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease !important;
 }

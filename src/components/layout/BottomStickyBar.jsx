@@ -2,7 +2,7 @@ import React from 'react';
 import { ArrowRight, Zap, Sparkles } from 'lucide-react';
 import './BottomStickyBar.css';
 
-export default function BottomStickyBar({ onBuyNow }) {
+export default function BottomStickyBar({ onBuyNow, isHidden }) {
   const handleBuyNowClick = (e) => {
     if (e) e.preventDefault();
     if (onBuyNow) {
@@ -16,7 +16,7 @@ export default function BottomStickyBar({ onBuyNow }) {
   };
 
   return (
-    <div className="tm-sticky-bottom-bar" role="region" aria-label="Special Launch Offer Bar">
+    <div className={"tm-sticky-bottom-bar" + (isHidden ? " is-hidden" : "")} role="region" aria-label="Special Launch Offer Bar">
       <div className="tm-sticky-bar-container">
         {/* Left Side: Offer Badge & Website Info (Desktop & Tablet) */}
         <div className="tm-sticky-bar-left">

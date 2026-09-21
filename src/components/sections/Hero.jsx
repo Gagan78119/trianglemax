@@ -102,24 +102,6 @@ export const Hero = ({ onOpenModal }) => {
             <span>This offer ends in <strong>24 hours</strong> only!</span>
           </div>
 
-          {/* Call to Actions */}
-          <div className="tm-hero-cta-group">
-            <a
-              href={getWhatsAppLink(whatsappMessage)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="tm-btn-whatsapp-hero"
-            >
-              <MessageCircle size={20} />
-              <span>Order cheyadaniki ipude message cheyandi 📲</span>
-            </a>
-
-            <a href="#services" className="tm-btn-demo-scroll">
-              <ArrowDown size={16} />
-              <span>Check Demo Videos Below</span>
-            </a>
-          </div>
-
           {/* Gratitude Sign-off */}
           <div className="tm-hero-signoff">
             Thank you <span className="tm-namaste">🙏</span>

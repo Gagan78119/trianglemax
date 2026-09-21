@@ -88,17 +88,6 @@ export const PricingCard = ({
             <ArrowRight size={18} />
           </button>
 
-          <a
-            href={getWhatsAppLink(whatsappMessage)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-card-whatsapp-secondary"
-            title="Chat with ANU on WhatsApp"
-          >
-            <MessageCircle size={16} />
-            <span>Have questions? Chat on WhatsApp First</span>
-          </a>
-
           <div className="pricing-security-strip">
             <div className="sec-pill">
               <Lock size={12} />
